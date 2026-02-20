@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>json-server 실행</h3>
+  <button id="postBtn">댓글 등록</button>
+  <button id="putBtn">댓글 수정</button>
+  <script>
+    document.querySelector('#postBtn').addEventListener('click',
+      fetch('http://localhost:3000/comments',{
+        method: 'post',
+        headers:{'Content-type':'application/json'},
+        body: JSON.stringify({body:'몇번글 댓글'})
+      }
+      )
+    )
+
+    document.querySelector('#putBtn').addEventListener('click',
+        fetch('http://localhost:3000/comments/1', {
+          method: 'put',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ body: '댓글수정 내용' })
+        }
+        )
+      )
+  </script>
+</body>
+</html>
