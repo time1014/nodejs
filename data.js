@@ -1,0 +1,55 @@
+const data = `[{"id":1,"first_name":"Darcie","last_name":"Varnals","email":"dvarnals0@linkedin.com","gender":"Female","salary":5744},
+{"id":2,"first_name":"Elijah","last_name":"Shoorbrooke","email":"eshoorbrooke1@cnet.com","gender":"Male","salary":6771},
+{"id":3,"first_name":"Cristie","last_name":"Lundbech","email":"clundbech2@wix.com","gender":"Female","salary":3546},
+{"id":4,"first_name":"Thacher","last_name":"Beneze","email":"tbeneze3@tumblr.com","gender":"Male","salary":9259},
+{"id":5,"first_name":"Doug","last_name":"Christou","email":"dchristou4@npr.org","gender":"Male","salary":4680},
+{"id":6,"first_name":"Annora","last_name":"Kither","email":"akither5@hhs.gov","gender":"Female","salary":13009},
+{"id":7,"first_name":"Izak","last_name":"Flute","email":"iflute6@china.com.cn","gender":"Male","salary":13313},
+{"id":8,"first_name":"Domeniga","last_name":"Guess","email":"dguess7@naver.com","gender":"Female","salary":6806},
+{"id":9,"first_name":"Rebekkah","last_name":"Hampton","email":"rhampton8@i2i.jp","gender":"Female","salary":3700},
+{"id":10,"first_name":"Abdul","last_name":"Caswall","email":"acaswall9@slashdot.org","gender":"Male","salary":7098},
+{"id":11,"first_name":"Lynne","last_name":"Wrefford","email":"lwrefforda@histats.com","gender":"Female","salary":8434},
+{"id":12,"first_name":"Alexandro","last_name":"Loads","email":"aloadsb@sourceforge.net","gender":"Male","salary":7352},
+{"id":13,"first_name":"Mel","last_name":"Castagneri","email":"mcastagneric@irs.gov","gender":"Fem      ale","salary":10131},
+{"id":14,"first_name":"De witt","last_name":"O' Faherty","email":"dofahertyd@mail.ru","gender":"Male","salary":9466},
+{"id":15,"first_name":"Teriann","last_name":"Hoyer","email":"thoyere@hp.com","gender":"Female","salary":13171},
+{"id":16,"first_name":"Saunders","last_name":"Cousens","email":"scousensf@freewebs.com","gender":"Male","salary":11679},
+{"id":17,"first_name":"Timothee","last_name":"Moring","email":"tmoringg@globo.com","gender":"Male","salary":4563},
+{"id":18,"first_name":"Dev","last_name":"Trime","email":"dtrimeh@friendfeed.com","gender":"Male","salary":4319},
+{"id":19,"first_name":"Ali","last_name":"Backshell","email":"abackshelli@cdbaby.com","gender":"Male","salary":5181},
+{"id":20,"first_name":"Oran","last_name":"Reeds","email":"oreedsj@nasa.gov","gender":"Male","salary":8875}]`;
+
+const ary = JSON.parse(data);
+// console.log(ary);
+
+const json = JSON.stringify(ary);
+// console.log(json);
+
+// console.log(['Hello', 'Hi', 'Good', 'World'].sort());
+
+// console.log([10, 35, 21, 121, 75].sort((n1, n2) => n1 - n2));
+
+const order_by_id = (obj1, obj2) => obj2.id - obj1.id;
+
+const order_by_salary = (obj1, obj2) => obj1.salary - obj2.salary
+
+const order_by_firstname = (obj1, obj2) => { 
+  return obj1.first_name < obj2.first_name ? -1 : 1; 
+}
+
+
+let result = ary.sort(order_by_firstname);
+// console.log(result);
+
+// if ('hello', 'nice') {
+//   console.log('hello');
+// } else {
+//   console.log('nice');
+// }
+
+
+function getMember() {
+  return ["user01", "user02", "user03"];
+}
+
+// module.exports = { ary };
