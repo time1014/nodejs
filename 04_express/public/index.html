@@ -7,6 +7,13 @@
 </head>
 <body>
   <h3>Welcome Homepage</h3>
+  <!-- multipart 요청 text binary 파일처리 -->
+  <form action="product/upload_file" method="post" enctype="multipart/form-data">
+    ID : <input type="text" name="uid" ><br>
+    NAME : <input type="text" name="uname"><br>
+    IMG : <input multiple type="file" name="myImg"><br>
+    <input type="submit" value="전송">
+  </form>
   <script src="js/basic.js"></script>
 </body>
 </html>
