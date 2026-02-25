@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>엑셀 파일 업로드</title>
+  <link rel="stylesheet" href="excel_upload.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>📊 엑셀 파일 업로드</h2>
+
+    <form action="/api/excel_upload" id="excelForm" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="excelFile">엑셀 파일 선택</label>
+        <input type="file" id="myfile" name="myfile">
+      </div>
+      <button type="submit">업로드</button>
+    </form>
+  </div>
+  <script>
+    document.querySelector('#excelForm').addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const fileInput = document.querySelector('#myfile');
+      console.log(fileInput.files[0]);
+      const excelData = new FormData(); // multipart요청 
+      excelData.append('myfile' , fileInput.files[0]);
+
+      fetch('/api/excel_upload',{
+        method : 'post',
+        body: excelData
+      })
+      .then((resp)=>resp.json())
+      .then((data)=>{
+        if(data.retCode === 'OK'){
+          console.log('엑셀등록완료')
+        }else{
+          console.log('엑셀등록실패')
+        }
+      }).catch((err)=>console.log(err));
+    })
+  </script>
+
+</body>
+
+</html>

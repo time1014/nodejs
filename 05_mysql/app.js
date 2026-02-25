@@ -4,9 +4,11 @@ require('dotenv').config();
 const mysql = require('./index');
 const encrypto = require('./crypto');
 const nodemailer = require("./nodemailer");
+const { excelRun } = require('./excel');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+const { upload } = require('./multer');
 
 //body parser
 app.use(express.json())
@@ -58,12 +60,49 @@ app.post('/api/login', async (req, res) => {
 })
 
 //메일발송
-app.post('/api/mail', async (req, res) => {
+app.post('/api/mail', upload.single("myfile"), async (req, res) => {
   const { from, to, subject, text } = req.body;
-
+  
   const html = text.split("\n").map((elem) => `<p>${elem}</p>`).join(""); // 메일은 html 형식이다 text형태로 할시 줄바꿈이 안됨 그래서 줄바꿈 기준으로 나눠서 p태그안에 넣고 빈문자열로 나눠 문자열로 변환
-  const result = await nodemailer.send({ from, to, subject, html });
-  res.json(result);
+  
+  let attachments;
+  if (req.file == undefined) {
+    attachments = null;
+  } else {
+    attachments = [
+      {
+        filename: req.file.filename,
+        path: req.file.path //path.join(__dirname, req.file.destination, req.file.filename)
+      },
+    ];
+  }
+  
+  const postData = { from, to, subject, html, attachments, };
+  
+  console.log("mail_req.body => ", req.body);
+  const result = await nodemailer.send(postData);
+
+  if (result.messageId) {
+    res.json({ retCode: 'OK' })
+  } else {
+    res.json({ retCode: "NG" });
+  }
+  // res.json(result);
+  // res.send("<p>메일발송성공</p>");
+});
+
+// 엑셀파일 첨부 후 db insert
+app.post('/api/excel_upload', upload.single("myfile"), async (req, res) => {
+  console.log(req);
+  await excelRun(req.file.path);
+  
+  if (excelRun(req.file.path) != undefined) {
+      res.json({retCode:'OK'});
+  } else {
+    res.json({retCode:'NG'});
+  }
+
+  
 })
 
 app.listen(3000, () => {

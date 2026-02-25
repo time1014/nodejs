@@ -26,6 +26,16 @@ const send = async (data) => {
       }
     }
 
-
+// send({
+//   from: 'koala579@daum.net',
+//   to: 'alswl25852@daum.net',
+//   subject: '파일첨부테스트',
+//   html:'<p>파일첨부테스트</p>',
+//   attachments: [
+//     { filename: '레드향.jpg', //파일명
+//       path: __dirname + '/uploads/' + "레드향.jpg"} //실제 파일
+//   ]
+// })
+// console.log("main send ...");
 
 module.exports = { send };
