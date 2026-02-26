@@ -1,0 +1,86 @@
+/* 전체 배경 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f9;
+}
+
+/* 중앙 컨테이너 */
+.container {
+  width: 500px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* 입력 그룹 */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* 라벨 */
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+/* input, textarea 공통 */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 포커스 효과 */
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* 버튼 영역 */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* 버튼 공통 */
+button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 등록 버튼 */
+button[type="submit"] {
+  background-color: #4a90e2;
+  color: white;
+}
+
+/* 취소 버튼 */
+button[type="reset"] {
+  background-color: #cccccc;
+}
+
+/* 버튼 hover 효과 */
+button:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 등록</title>
+  <link rel="stylesheet" href="board_write.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>📌 게시글 등록</h2>
+
+    <form id="boardForm" method="post" action="/board/create">
+
+      <!-- 제목 -->
+      <div class="form-group">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+
+      <!-- 내용 -->
+      <div class="form-group">
+        <label for="content">내용</label>
+        <textarea id="content" name="content" rows="8" required></textarea>
+      </div>
+
+      <!-- 작성자 -->
+      <div class="form-group">
+        <label for="writer">작성자</label>
+        <input type="text" id="writer" name="writer" required>
+      </div>
+
+      <!-- 버튼 -->
+      <div class="button-group">
+        <button type="submit">등록</button>
+        <button type="reset">취소</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    document.querySelector('#boardForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = document.querySelector('#title').value;
+      const content = document.querySelector('#content').value;
+      const id = document.querySelector('#writer').value;
+
+      fetch('/api/board/insert',{
+        method : 'post',
+        headers:{ 'Content-type': 'application/json' },
+        body : JSON.stringify({
+          title,
+          content,
+          id
+        }
+      )
+      })
+      .then((resp)=>resp.json())
+      .then((data)=>{
+        console.log(data);
+        if(data.retCode === "OK"){
+          alert('등록완료');
+          window.location.href = "boardList.html";
+        }else{
+          alert('등록실패');
+        }
+      })
+      .catch((err)=> console.log(err));
+    });
+  </script>
+
+</body>
+
+</html>
+
+

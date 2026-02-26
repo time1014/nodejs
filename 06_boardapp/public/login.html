@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <div id="login_container">
+    <form action="post" id="loginForm" action="">
+      <fieldset>
+        <legend>로그인</legend>
+        <label>아이디</label>
+        <input type="text" name="user_id" id="user_id">
+        <label>비밀번호</label>
+        <input type="password" name="user_pw" id="user_pw">
+        <button type="submit" id="loginBtn">로그인</button>
+      </fieldset>
+    </form>
+    <a href="signup.html">회원가입</a>
+  </div>
+
+  <script>
+    document.querySelector('#loginForm').addEventListener('submit',(e)=>{
+      e.preventDefault();
+
+      const loginId = document.querySelector('#user_id').value;
+      const loginPass = document.querySelector('#user_pw').value;
+
+      fetch('/api/auth/login',{
+        method : 'post',
+        headers: { 'Content-type': 'application/json' },
+        body : JSON.stringify({
+          loginId,
+          password : loginPass
+      })
+      })
+      .then((resp)=>resp.json())
+      .then((data)=>{
+        if(data.retCode === "OK"){
+          alert('로그인 성공');
+          window.location.href = "boardList.html"
+        }else{
+          alert('아이디와 비밀번호 확인');
+          window.location.reload();
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

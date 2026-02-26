@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 상세보기</title>
+  <link rel="stylesheet" href="board_detail.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>게시글 상세보기</h1>
+
+    <div class="board-detail">
+
+      <div class="detail-row">
+        <div class="label">글번호</div>
+        <div class="value" id="board_id"></div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">제목</div>
+        <div class="value" id="title"></div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">작성자</div>
+        <div class="value" id="name"></div>
+      </div>
+
+      <div class="detail-row">
+        <div class="label">작성일시</div>
+        <div class="value" id="created_at"></div>
+      </div>
+
+      <div class="detail-content">
+        <div class="label">내용</div>
+        <div class="content-box" id="content">
+          
+        </div>
+      </div>
+
+    </div>
+
+    <div class="button-area">
+      <button onclick="history.back()">목록으로</button>
+    </div>
+  </div>
+
+  <script>
+    fetch(`/api/board/${localStorage.getItem('page')}`)
+    .then((resp)=>resp.json())
+    .then((data)=>{
+      console.log(data[0].board_id);
+      const { board_id , title , name , created_at, content } = data[0];
+      const boardId = document.querySelector('#board_id');
+      const boardTitle = document.querySelector('#title');
+      const boardWriter = document.querySelector('#name');
+      const boardCreatedAt = document.querySelector('#created_at');
+      const boardContent = document.querySelector('#content');
+
+      boardId.innerHTML = board_id;
+      boardTitle.innerHTML = title;
+      boardWriter.innerHTML = name;
+      boardCreatedAt.innerHTML = created_at;
+      boardContent.innerHTML = content
+      .split("\n")
+      .map((elem)=>`<p>${elem}</p>`)
+      .join("");
+    }).catch((err)=>console.log(err));
+    
+  </script>
+
+</body>
+
+</html>

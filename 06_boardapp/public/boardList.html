@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 목록</title>
+  <link rel="stylesheet" href="board_list.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>게시글 목록</h1>
+
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>글번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일시</th>
+        </tr>
+      </thead>
+      <tbody id="boardBody">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    fetch('/api/board')
+    .then((resp)=>resp.json())
+    .then((data)=>{
+      const parent = document.querySelector('tbody');
+      for(let board of data){
+        const {board_id , title , name ,created_at } = board;
+              const html = `<tr>
+                              <td>${board_id}</td>
+                              <td><a class = "listA" href="boardDetail.html" data-page = "${board_id}">${title}</a></td>
+                              <td>${name}</td>
+                              <td>${created_at}</td>
+                            </tr>`;
+        parent.insertAdjacentHTML("beforeend", html); // 뭐임 이거? 한적있었나?
+      }
+
+      document.querySelectorAll('tbody a').forEach(elem=>{
+        elem.addEventListener('click',(e)=>{
+          e.preventDefault();
+          //클릭한 글 번호를 localStorage에 저장
+          localStorage.setItem('page',e.target.dataset.page);
+          location.href = "boardDetail.html"
+        })
+      })
+    })
+    .catch((err)=>console.log(err));
+  </script>
+
+</body>
+
+</html>

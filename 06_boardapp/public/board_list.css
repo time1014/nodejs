@@ -1,0 +1,92 @@
+/* 전체 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* 컨테이너 */
+.container {
+  width: 900px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 제목 */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.listA {
+  background: linear-gradient(90deg, #667eea, #ff6ec4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.listA:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+}
+
+/* 테이블 */
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.board-table thead {
+  background-color: #2c3e50;
+  color: #ffffff;
+}
+
+.board-table th,
+.board-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-table th:nth-child(2),
+.board-table td:nth-child(2) {
+  padding-left: 20px;
+}
+
+/* 마우스 hover 효과 */
+.board-table tbody tr:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+/* 페이지네이션 */
+.pagination {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button:hover {
+  background-color: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
+}
